@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.szte.inf.controllers.MainController">
     <MenuBar layoutX="20" layoutY="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
              AnchorPane.topAnchor="0.0">
         <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" text="Close" onAction="#onClose"/>
+            <MenuItem mnemonicParsing="false" onAction="#onClose" text="Close"/>
         </Menu>
         <Menu mnemonicParsing="false" text="View">
-            <MenuItem mnemonicParsing="false" text="Create Book"/>
-            <MenuItem mnemonicParsing="false" text="List Books"/>
+            <MenuItem mnemonicParsing="false" text="Create Book" onAction="#createBook"/>
+            <MenuItem mnemonicParsing="false" text="List Books" onAction="#readBooks"/>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
             <MenuItem mnemonicParsing="false" text="About"/>
         </Menu>
     </MenuBar>
+    <AnchorPane fx:id="mainContentAnchorPane" layoutY="25.0" prefHeight="374.0" prefWidth="600.0"
+                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="25.0"/>
 </AnchorPane>

@@ -11,7 +11,7 @@ public class Book {
 
     private Long id;
     @NonNull
-    private String name;
+    private String title;
     @NonNull
     private String author;
     @NonNull
