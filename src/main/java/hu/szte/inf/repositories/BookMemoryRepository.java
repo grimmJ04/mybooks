@@ -39,14 +39,6 @@ public class BookMemoryRepository implements IDao<Book, Long> {
 
     @Override
     public void saveAll(Iterable<Book> models) {
-        dbService.getModel().putAll(
-                StreamSupport.stream(
-                        models.spliterator(), false
-                ).collect(Collectors.toMap(Book::getId, model -> {
-                    if (model.getId() == null) {
-                        model.setId(currentId++);
-                    }
-                    return model;
-                })));
+        models.forEach(this::save);
     }
 }
