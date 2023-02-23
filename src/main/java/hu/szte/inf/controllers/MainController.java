@@ -1,15 +1,15 @@
 package hu.szte.inf.controllers;
 
-import hu.szte.inf.repositories.BookMemoryRepository;
+import hu.szte.inf.repositories.BookRepository;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 
 public class MainController {
 
-    private final BookMemoryRepository repository;
+    private final BookRepository repository;
 
     public MainController() {
-        repository = new BookMemoryRepository();
+        repository = new BookRepository();
     }
 
     @FXML
