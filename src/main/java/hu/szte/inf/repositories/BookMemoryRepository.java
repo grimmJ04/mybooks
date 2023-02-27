@@ -5,8 +5,6 @@ import hu.szte.inf.models.Book;
 import hu.szte.inf.services.BookMemoryDbService;
 
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 public class BookMemoryRepository implements IDao<Book, Long> {
 

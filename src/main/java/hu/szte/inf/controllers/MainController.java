@@ -1,9 +1,7 @@
 package hu.szte.inf.controllers;
 
 import hu.szte.inf.App;
-import hu.szte.inf.repositories.BookMemoryRepository;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
