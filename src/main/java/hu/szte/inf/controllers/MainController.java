@@ -14,14 +14,8 @@ import java.io.IOException;
 
 public class MainController {
 
-    private final BookMemoryRepository repository;
-
     @FXML
     private AnchorPane mainContentAnchorPane;
-
-    public MainController() {
-        repository = new BookMemoryRepository();
-    }
 
     @FXML
     private void initialize() throws IOException {
