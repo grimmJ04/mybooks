@@ -15,6 +15,8 @@ public class BookReadController {
 
     @FXML
     private void initialize() {
+        // currently, a reload is needed to show newly added records
+        // dynamic solution next time!
         TableViewSupport.fillRows(tableView, repository.findAll(), Book.class);
     }
 }
