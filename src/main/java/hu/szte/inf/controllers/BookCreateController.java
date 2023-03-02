@@ -2,7 +2,9 @@ package hu.szte.inf.controllers;
 
 import hu.szte.inf.models.Book;
 import hu.szte.inf.models.Genre;
-import hu.szte.inf.repositories.BookMemoryRepository;
+import hu.szte.inf.repositories.BookRepository;
+import hu.szte.inf.services.BookTableQueryService;
+import hu.szte.inf.utils.Functional;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +18,8 @@ import java.util.Arrays;
 
 public class BookCreateController {
 
-    private final BookMemoryRepository repository = new BookMemoryRepository();
+    private final BookRepository repository = new BookRepository();
+    private final BookTableQueryService tableService = BookTableQueryService.getInstance();
 
     @FXML
     private TextField titleTextField;
@@ -52,6 +55,7 @@ public class BookCreateController {
     private void onSave(ActionEvent actionEvent) {
         var model = getModelFromInputs();
         repository.save(model);
+        tableService.setModel(Functional.iterableToObservableList(repository.findAll()));
         closeStage(actionEvent);
     }
 

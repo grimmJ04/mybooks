@@ -1,6 +1,8 @@
 package hu.szte.inf;
 
-import hu.szte.inf.repositories.BookMemoryRepository;
+import hu.szte.inf.repositories.BookRepository;
+import hu.szte.inf.services.BookTableQueryService;
+import hu.szte.inf.utils.Functional;
 import hu.szte.inf.utils.db.DbInitializer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,12 +28,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        new BookMemoryRepository().saveAll(DbInitializer.getDefaultBooks());
+        var repository = new BookRepository();
+        repository.saveAll(DbInitializer.getDefaultBooks());
+        BookTableQueryService.getInstance().setModel(Functional.iterableToObservableList(repository.findAll()));
 
         App.stage = stage;
         Scene scene = new Scene(loadFXML("main"));
         stage.setScene(scene);
         stage.show();
     }
-
 }
