@@ -24,37 +24,12 @@ public class BookReadController {
     @FXML
     private void initialize() {
         TableViewSupport.createSchema(tableView, Book.class);
-        tableView.itemsProperty().bind(tableService.modelProperty());
-        tableView.getSelectionModel().selectedItemProperty().addListener((observableValue, t, t1) -> {
-            if (t1 != null) {
-                selectedIdTextField.setText(t1.getId().toString());
-            }
-            else {
-                selectedIdTextField.clear();
-            }
-        });
+        // TODO: implement filling of table
     }
 
     @FXML
     private void onDelete() {
-        var selection = tableView.getSelectionModel().getSelectedItem();
-        if (selection == null) {
-            var alert = new Alert(Alert.AlertType.INFORMATION, "No model was selected!", ButtonType.OK);
-            alert.showAndWait();
-            return;
-        }
-
-        var alert = new Alert(
-                Alert.AlertType.CONFIRMATION,
-                "Are you sure you want to delete model with ID: " +
-                        tableView.getSelectionModel().getSelectedItem().getId(),
-                ButtonType.YES,
-                ButtonType.NO);
-        var result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.YES) {
-            repository.deleteById(selection.getId());
-            tableService.setModel(Functional.iterableToObservableList(repository.findAll()));
-        }
+        // TODO: implement delete method
     }
 
     @FXML

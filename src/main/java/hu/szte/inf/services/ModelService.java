@@ -5,17 +5,13 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public abstract class ModelService<T> {
 
-    private final Property<T> modelProperty = new SimpleObjectProperty<>();
-
-    public Property<T> modelProperty() {
-        return modelProperty;
-    }
+    private T model = null;
 
     public T getModel() {
-        return modelProperty.getValue();
+        return model;
     }
 
     public void setModel(T model) {
-        modelProperty.setValue(model);
+        this.model = model;
     }
 }

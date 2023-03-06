@@ -29,8 +29,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         var repository = new BookRepository();
-        repository.saveAll(DbInitializer.getDefaultBooks());
-        BookTableQueryService.getInstance().setModel(Functional.iterableToObservableList(repository.findAll()));
+        // TODO: init repo and service
 
         App.stage = stage;
         Scene scene = new Scene(loadFXML("main"));
