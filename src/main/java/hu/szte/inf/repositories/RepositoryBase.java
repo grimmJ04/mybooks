@@ -39,11 +39,18 @@ public abstract class RepositoryBase<T, ID> implements CrudRepository<T, ID> {
     @Override
     public <S extends T> Iterable<S> saveAll(Iterable<S> entities) {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            entityManager.getTransaction().begin();
+            var transaction = entityManager.getTransaction();
+            transaction.begin();
             for (S entity : entities) {
-                entityManager.persist(entity);
+                try {
+                    entityManager.persist(entity);
+                } catch (PersistenceException e) {
+                    transaction.rollback();
+                    transaction.begin();
+                    entityManager.merge(entity);
+                }
             }
-            entityManager.getTransaction().commit();
+            transaction.commit();
         }
         return entities;
     }
@@ -66,11 +73,11 @@ public abstract class RepositoryBase<T, ID> implements CrudRepository<T, ID> {
     @Override
     public Iterable<T> findAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            var query = entityManager.getCriteriaBuilder().createQuery(forClass);
-            var root = query.from(forClass);
-            var selection = query.select(root);
-            var allQuery = entityManager.createQuery(selection);
-            return allQuery.getResultList();
+            var baseQuery = entityManager.getCriteriaBuilder().createQuery(forClass);
+            var tableSelection = baseQuery.from(forClass);
+            var selectStatement = baseQuery.select(tableSelection);
+            var selectAll = entityManager.createQuery(selectStatement);
+            return selectAll.getResultList();
         }
     }
 
@@ -140,12 +147,12 @@ public abstract class RepositoryBase<T, ID> implements CrudRepository<T, ID> {
     @Override
     public void deleteAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            var query = entityManager.getCriteriaBuilder().createQuery(forClass);
-            var root = query.from(forClass);
-            var selection = query.select(root);
-            var allQuery = entityManager.createQuery(selection);
+            var baseQuery = entityManager.getCriteriaBuilder().createQuery(forClass);
+            var tableSelection = baseQuery.from(forClass);
+            var selectStatement = baseQuery.select(tableSelection);
+            var selectAll = entityManager.createQuery(selectStatement);
             entityManager.getTransaction().begin();
-            for (var entity : allQuery.getResultList()) {
+            for (var entity : selectAll.getResultList()) {
                 entityManager.remove(entity);
             }
             entityManager.getTransaction().commit();
