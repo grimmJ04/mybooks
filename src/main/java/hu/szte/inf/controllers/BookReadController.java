@@ -1,7 +1,7 @@
 package hu.szte.inf.controllers;
 
 import hu.szte.inf.models.Book;
-import hu.szte.inf.repositories.HibernateBookRepository;
+import hu.szte.inf.repositories.SqliteBookRepository;
 import hu.szte.inf.services.BookTableQueryService;
 import hu.szte.inf.utils.Functional;
 import hu.szte.inf.utils.fx.TableViewSupport;
@@ -13,13 +13,15 @@ import javafx.scene.control.TextField;
 
 public class BookReadController {
 
-    private final HibernateBookRepository repository = new HibernateBookRepository();
+    private final SqliteBookRepository repository = new SqliteBookRepository();
     private final BookTableQueryService tableService = BookTableQueryService.getInstance();
 
     @FXML
     private TableView<Book> tableView;
     @FXML
     private TextField selectedIdTextField;
+
+    private int prevSelection = -1;
 
     @FXML
     private void initialize() {
@@ -31,6 +33,17 @@ public class BookReadController {
             }
             else {
                 selectedIdTextField.clear();
+            }
+        });
+        tableView.setOnMouseClicked(mouseEvent -> {
+            int selection = tableView.getSelectionModel().getSelectedIndex();
+            if (selection == prevSelection) {
+                selectedIdTextField.clear();
+                tableView.getSelectionModel().clearSelection();
+                prevSelection = -1;
+            }
+            else {
+                prevSelection = selection;
             }
         });
     }
@@ -55,10 +68,5 @@ public class BookReadController {
             repository.deleteById(selection.getId());
             tableService.setModel(Functional.iterableToObservableList(repository.findAll()));
         }
-    }
-
-    @FXML
-    private void onClear() {
-        tableView.getSelectionModel().clearSelection();
     }
 }

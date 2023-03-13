@@ -13,6 +13,4 @@
            AnchorPane.leftAnchor="14.0"/>
     <TextField fx:id="selectedIdTextField" editable="false" focusTraversable="false" layoutX="84.0" layoutY="374.0"
                AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="85.0"/>
-    <Button layoutX="234.0" layoutY="374.0" mnemonicParsing="false" onAction="#onClear" text="Clear"
-            AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="235.0"/>
 </AnchorPane>

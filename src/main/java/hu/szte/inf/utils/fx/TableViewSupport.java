@@ -7,6 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class TableViewSupport {
@@ -19,7 +20,7 @@ public class TableViewSupport {
             TableColumn<T, ?> col = new TableColumn<>(el);
             col.setCellValueFactory(new PropertyValueFactory<>(el));
             return col;
-        }).toList());
+        }).collect(Collectors.toList()));
 
         return tableView;
     }
@@ -27,7 +28,7 @@ public class TableViewSupport {
     public static <T> TableView<T> fillRows(TableView<T> tableView, Iterable<T> data, Class<T> clazz) {
         var newTableView = createSchema(tableView, clazz);
         newTableView.setItems(FXCollections.observableList(
-                StreamSupport.stream(data.spliterator(), false).toList()));
+                StreamSupport.stream(data.spliterator(), false).collect(Collectors.toList())));
         return newTableView;
     }
 }

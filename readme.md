@@ -1,6 +1,6 @@
 # Books desktop project
 
-JDK version: 19.0.2
+> jdk-version~=11.0.18  # (11.0.*)
 
 `JAVA_HOME` environment variable should be set wherever the specified jdk lives.
 If not, the bundled maven could be still used from the IDE,

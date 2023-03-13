@@ -2,7 +2,7 @@ package hu.szte.inf.controllers;
 
 import hu.szte.inf.models.Book;
 import hu.szte.inf.models.Genre;
-import hu.szte.inf.repositories.HibernateBookRepository;
+import hu.szte.inf.repositories.SqliteBookRepository;
 import hu.szte.inf.services.BookTableQueryService;
 import hu.szte.inf.utils.Functional;
 import javafx.collections.FXCollections;
@@ -15,10 +15,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class BookCreateController {
 
-    private final HibernateBookRepository repository = new HibernateBookRepository();
+    private final SqliteBookRepository repository = new SqliteBookRepository();
     private final BookTableQueryService tableService = BookTableQueryService.getInstance();
 
     @FXML
@@ -33,7 +34,7 @@ public class BookCreateController {
     @FXML
     private void initialize() {
         genreComboBox.setItems(
-                FXCollections.observableList(Arrays.stream(Genre.values()).toList()));
+                FXCollections.observableList(Arrays.stream(Genre.values()).collect(Collectors.toList())));
         genreComboBox.getSelectionModel().selectFirst();
     }
 
