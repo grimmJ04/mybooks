@@ -3,23 +3,14 @@ package hu.szte.inf.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
-@Entity
-public class Book {
+// TODO: based on your chosen implementation
+//  create an implementation of a Book class with
+//  - id: primary key (should be Long)
+//  - title: representing the book's title as text
+//  - author: similarly
+//  - pageNumber: integer, representing the page count of the book
+//  - genre: an enumeration, representing possible values
+//  The book should have getters, setters and a default constructor.
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NonNull
-    private String title;
-    @NonNull
-    private String author;
-    @NonNull
-    private int pageNumber;
-    @NonNull
-    private Genre genre;
+public class Book {
 }

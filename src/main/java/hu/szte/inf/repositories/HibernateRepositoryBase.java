@@ -12,150 +12,83 @@ import java.util.stream.StreamSupport;
 
 public abstract class HibernateRepositoryBase<T, ID> implements CrudRepository<T, ID> {
 
-    private static final EntityManagerFactory entityManagerFactory = PersistenceSupport.createEntityManagerFactory();
+    private final EntityManagerFactory entityManagerFactory;
     private final Class<T> forClass;
 
-    public HibernateRepositoryBase(Class<T> forClass) {
+    public HibernateRepositoryBase(EntityManagerFactory entityManagerFactory, Class<T> forClass) {
+        this.entityManagerFactory = entityManagerFactory;
         this.forClass = forClass;
     }
 
     @Override
     public <S extends T> S save(S entity) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            var transaction = entityManager.getTransaction();
-            transaction.begin();
-            try {
-                entityManager.persist(entity);
-            } catch (PersistenceException e) {
-                transaction.rollback();
-                transaction.begin();
-                entityManager.merge(entity);
-            }
-            transaction.commit();
-        }
-        return entity;
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public <S extends T> Iterable<S> saveAll(Iterable<S> entities) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            var transaction = entityManager.getTransaction();
-            transaction.begin();
-            for (S entity : entities) {
-                try {
-                    entityManager.persist(entity);
-                } catch (PersistenceException e) {
-                    transaction.rollback();
-                    transaction.begin();
-                    entityManager.merge(entity);
-                }
-            }
-            transaction.commit();
-        }
-        return entities;
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public Optional<T> findById(ID aLong) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            T entity = entityManager.find(forClass, aLong);
-            return Optional.of(entity);
-        }
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean existsById(ID aLong) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            return entityManager.contains(aLong);
-        }
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public Iterable<T> findAll() {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            var baseQuery = entityManager.getCriteriaBuilder().createQuery(forClass);
-            var tableSelection = baseQuery.from(forClass);
-            var selectStatement = baseQuery.select(tableSelection);
-            var selectAll = entityManager.createQuery(selectStatement);
-            return selectAll.getResultList();
-        }
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public Iterable<T> findAllById(Iterable<ID> longs) {
-        var entities = new ArrayList<T>();
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            for (var id : longs) {
-                T entity = entityManager.find(forClass, id);
-                entities.add(entity);
-            }
-        }
-        return entities;
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public long count() {
-        return StreamSupport.stream(findAll().spliterator(), false).count();
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void deleteById(ID aLong) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            var entity = entityManager.find(forClass, aLong);
-            if (entity != null) {
-                entityManager.getTransaction().begin();
-                entityManager.remove(entity);
-                entityManager.getTransaction().commit();
-            }
-        }
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void delete(T entity) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            entityManager.getTransaction().begin();
-            entityManager.remove(entity);
-            entityManager.getTransaction().commit();
-        }
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void deleteAllById(Iterable<? extends ID> longs) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            entityManager.getTransaction().begin();
-            for (var id : longs) {
-                var entity = entityManager.find(forClass, id);
-                if (entity != null) {
-                    entityManager.remove(entity);
-                }
-            }
-            entityManager.getTransaction().commit();
-        }
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void deleteAll(Iterable<? extends T> entities) {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            entityManager.getTransaction().begin();
-            for (var entity : entities) {
-                entityManager.remove(entity);
-            }
-            entityManager.getTransaction().commit();
-        }
+        // TODO
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void deleteAll() {
-        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            var baseQuery = entityManager.getCriteriaBuilder().createQuery(forClass);
-            var tableSelection = baseQuery.from(forClass);
-            var selectStatement = baseQuery.select(tableSelection);
-            var selectAll = entityManager.createQuery(selectStatement);
-            entityManager.getTransaction().begin();
-            for (var entity : selectAll.getResultList()) {
-                entityManager.remove(entity);
-            }
-            entityManager.getTransaction().commit();
-        }
+        // TODO
+        throw new UnsupportedOperationException();
     }
 }

@@ -1,13 +1,13 @@
 package hu.szte.inf;
 
 import hu.szte.inf.repositories.SqliteBookRepository;
-import hu.szte.inf.services.BookTableQueryService;
 import hu.szte.inf.utils.Functional;
 import hu.szte.inf.utils.db.DbInitializer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,17 +22,22 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
+    public static Pane changeView(Pane pane, String fxml) throws IOException {
+        pane.getChildren().clear();
+        pane.getChildren().add(loadFXML(fxml));
+        return pane;
+    }
+
     public static void main(String[] args) {
         launch();
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        var repository = new SqliteBookRepository();
-        repository.createTableIfNotExists();
-        repository.deleteAll();
-        repository.saveAll(DbInitializer.getDefaultBooks());
-        BookTableQueryService.getInstance().setModel(Functional.iterableToObservableList(repository.findAll()));
+        // TODO: properly initialize application
+        //  - fill db with default records
+        //  - init services (if used)
+        //  - create tables (if framework requires it so)
 
         App.stage = stage;
         Scene scene = new Scene(loadFXML("main"));

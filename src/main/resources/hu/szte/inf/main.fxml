@@ -7,11 +7,11 @@
     <MenuBar layoutX="20" layoutY="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
              AnchorPane.topAnchor="0.0">
         <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#onClose" text="Close"/>
+            <MenuItem mnemonicParsing="false" text="Close"/>
         </Menu>
         <Menu mnemonicParsing="false" text="View">
-            <MenuItem mnemonicParsing="false" text="Create Book" onAction="#createBook"/>
-            <MenuItem mnemonicParsing="false" text="List Books" onAction="#readBooks"/>
+            <MenuItem mnemonicParsing="false" text="Create Book"/>
+            <MenuItem mnemonicParsing="false" text="List Books"/>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
             <MenuItem mnemonicParsing="false" text="About"/>
