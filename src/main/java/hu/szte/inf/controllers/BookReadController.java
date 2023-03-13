@@ -1,7 +1,7 @@
 package hu.szte.inf.controllers;
 
 import hu.szte.inf.models.Book;
-import hu.szte.inf.repositories.BookRepository;
+import hu.szte.inf.repositories.HibernateBookRepository;
 import hu.szte.inf.services.BookTableQueryService;
 import hu.szte.inf.utils.Functional;
 import hu.szte.inf.utils.fx.TableViewSupport;
@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 
 public class BookReadController {
 
-    private final BookRepository repository = new BookRepository();
+    private final HibernateBookRepository repository = new HibernateBookRepository();
     private final BookTableQueryService tableService = BookTableQueryService.getInstance();
 
     @FXML

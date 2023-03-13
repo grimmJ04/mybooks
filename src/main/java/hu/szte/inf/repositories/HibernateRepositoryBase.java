@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
-public abstract class RepositoryBase<T, ID> implements CrudRepository<T, ID> {
+public abstract class HibernateRepositoryBase<T, ID> implements CrudRepository<T, ID> {
 
     private static final EntityManagerFactory entityManagerFactory = PersistenceSupport.createEntityManagerFactory();
     private final Class<T> forClass;
 
-    public RepositoryBase(Class<T> forClass) {
+    public HibernateRepositoryBase(Class<T> forClass) {
         this.forClass = forClass;
     }
 

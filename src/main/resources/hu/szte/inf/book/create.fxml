@@ -15,12 +15,12 @@
     </Label>
     <Label layoutX="55.0" layoutY="80.0" text="Title" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="181.0"
            AnchorPane.topAnchor="80.0"/>
-    <TextField fx:id="titleTextField" layoutX="55.0" layoutY="166.0" prefWidth="150.0" AnchorPane.leftAnchor="55.0"
-               AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="166.0"/>
+    <TextField fx:id="titleTextField" layoutX="55.0" layoutY="97.0" prefWidth="150.0" AnchorPane.leftAnchor="55.0"
+               AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="97.0"/>
     <Label layoutX="55.0" layoutY="149.0" text="Author" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="167.0"
            AnchorPane.topAnchor="149.0"/>
-    <TextField fx:id="authorTextField" layoutX="55.0" layoutY="97.0" prefWidth="150.0" AnchorPane.leftAnchor="55.0"
-               AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="97.0"/>
+    <TextField fx:id="authorTextField" layoutX="55.0" layoutY="166.0" prefWidth="150.0" AnchorPane.leftAnchor="55.0"
+               AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="166.0"/>
     <Label layoutX="55.0" layoutY="228.0" text="Page Number" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="130.0"
            AnchorPane.topAnchor="228.0"/>
     <Spinner fx:id="pageNumberSpinner" editable="true" layoutX="55.0" layoutY="245.0" prefWidth="150.0"

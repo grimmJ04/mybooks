@@ -2,7 +2,7 @@ package hu.szte.inf.controllers;
 
 import hu.szte.inf.models.Book;
 import hu.szte.inf.models.Genre;
-import hu.szte.inf.repositories.BookRepository;
+import hu.szte.inf.repositories.HibernateBookRepository;
 import hu.szte.inf.services.BookTableQueryService;
 import hu.szte.inf.utils.Functional;
 import javafx.collections.FXCollections;
@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 public class BookCreateController {
 
-    private final BookRepository repository = new BookRepository();
+    private final HibernateBookRepository repository = new HibernateBookRepository();
     private final BookTableQueryService tableService = BookTableQueryService.getInstance();
 
     @FXML
